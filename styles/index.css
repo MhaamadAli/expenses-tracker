@@ -1,3 +1,10 @@
 .main {
     height: 97vh;
 }
+
+.main .side-bar {
+    height: 100%;
+    width: 20VW;
+    background-color: #374C52;
+    color: white;
+}
