@@ -1,4 +1,4 @@
-const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+const transactions = getTransactions() || [];
 const transactionsList = document.querySelector('.transactions-list');
 
 
@@ -7,36 +7,14 @@ function loadTransactions(currencies) {
     transactions.forEach(transaction => {
         const card = document.createElement('div');
         card.classList.add('card', 'mono-regular', 'rounded', 'p1');
-        
-        const nameElement = document.createElement('div');
-        nameElement.classList.add('transaction-name', 'm-left');
-        nameElement.textContent = transaction.name;
-        card.appendChild(nameElement);
-
-        const typeElement = document.createElement('div');
-        typeElement.classList.add('type', 'm-left');
-        typeElement.textContent = `Type: ${transaction.type}`;
-        card.appendChild(typeElement);
-        
-        const amountElement = document.createElement('div');
-        amountElement.classList.add('amount', 'm-left');
-        amountElement.textContent = `Amount: ${transaction.amount} ${transaction.symbol}`;
-        card.appendChild(amountElement);
-
-        const iconsContainer = document.createElement('div');
-        iconsContainer.classList.add('icons', 'flex-row');
-
-        const editIcon = document.createElement('i');
-        editIcon.classList.add('fa-solid', 'fa-pen-to-square');
-        editIcon.setAttribute('data-id', transaction.id);
-        iconsContainer.appendChild(editIcon);
-
-        const deleteIcon = document.createElement('i');
-        deleteIcon.classList.add('fa-solid', 'fa-trash-can');
-        deleteIcon.setAttribute('data-id', transaction.id);
-        iconsContainer.appendChild(deleteIcon);
-
-        card.appendChild(iconsContainer);
+        card.innerHTML = `
+        <div class="transaction-name m-left">${transaction.name}</div>
+        <div class="type m-left">Type: ${transaction.type}</div>
+        <div class="amount m-left">Amount: ${transaction.amount} ${transaction.symbol}</div>
+        <div class="icons flex-row">
+          <i class="fa-solid fa-pen-to-square" data-id="${transaction.id}"></i>
+          <i class="fa-solid fa-trash-can" data-id="${transaction.id}"></i>
+        </div>`;
         transactionsList.appendChild(card);
     });
 }
