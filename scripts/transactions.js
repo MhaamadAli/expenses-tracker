@@ -1,7 +1,8 @@
-function loadTransactions(currencies) {
-    const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-    const transactionsList = document.querySelector('.transactions-list');
+const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+const transactionsList = document.querySelector('.transactions-list');
 
+
+function loadTransactions(currencies) {
     transactionsList.innerHTML = '';
     transactions.forEach(transaction => {
         const card = document.createElement('div');
@@ -17,11 +18,9 @@ function loadTransactions(currencies) {
         typeElement.textContent = `Type: ${transaction.type}`;
         card.appendChild(typeElement);
         
-        const currencySymbol = transaction.symbol
-
         const amountElement = document.createElement('div');
         amountElement.classList.add('amount', 'm-left');
-        amountElement.textContent = `Amount: ${transaction.amount} ${currencySymbol}`;
+        amountElement.textContent = `Amount: ${transaction.amount} ${transaction.symbol}`;
         card.appendChild(amountElement);
 
         const iconsContainer = document.createElement('div');
@@ -43,15 +42,14 @@ function loadTransactions(currencies) {
 }
 
 function createNewTransaction(transactionData) {
-    // Set the correct type for the transaction
+    
     transactionData.type = document.getElementById('type').value;
 
-    // Get the selected currency and its symbol
+    
     const currencySelect = document.getElementById('currencies');
-    // Add the currency symbol to the transaction data
+    
     transactionData.symbol = currencySelect.options[currencySelect.selectedIndex].getAttribute('data-symbol');
 
-    // Generate a unique ID for the transaction
     transactionData.id = Date.now().toString();
     const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     transactions.push(transactionData);
