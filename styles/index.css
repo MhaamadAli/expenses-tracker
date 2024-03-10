@@ -29,7 +29,7 @@
     height: 60px;
     width: 240px;
     background-color: #fff;
-    box-shadow: 1px 1px 5px;
+    box-shadow: 1px 1px 5px rgb(108, 108, 108);
     border-radius: 15px;
     margin-right: 120px;
 }
@@ -39,4 +39,49 @@ input {
     font-size: 14pt;
     outline:none;
     border: 0px
+}
+
+.transactions-list {
+    gap: 20px;
+    color: white;
+}
+
+.card {
+    width: 90%;
+    height: 45px;
+    background-color: #2F6775;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+.card .transaction-name {
+    width: 45%;
+    border-right: 2px solid rgb(255, 252, 252);
+}
+
+.card .type {
+    flex-grow: 0.5;
+    border-right: 2px solid rgb(255, 252, 252);
+}
+
+.card .amount {
+    flex-grow: 0.5;
+}
+
+.card .icons {
+    padding-right: 10px;
+    gap: 20px;
+    color: #B05D48;
+}
+
+.card .icons i:nth-child(2) {
+    color: white;
+}
+
+.btn {
+    position: fixed;
+    bottom: 40px;
+    left: 20%;
 }

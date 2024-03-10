@@ -107,3 +107,23 @@
 .shadow {
   box-shadow: 1px -1px 10px;
 }
+
+.btn-primary {
+  background-color: #A1D8E6;
+  width: 145px;
+  height: 70px;
+  border-radius: 25px;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #374C52;
+  box-shadow: 1px 1px 5px rgb(128, 126, 126);
+  transition: .3s ease-in-out;
+  scale: .9;
+}
+
+.btn-primary:hover {
+  scale: 1;
+  background-color: #66c1d8;
+  color: #27363a;
+}
