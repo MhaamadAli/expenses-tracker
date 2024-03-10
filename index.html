@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./styles/utilities.css">
     <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/pop.css">
 </head>
 <body>
     <section class="main flex-row m1 ">
@@ -76,9 +77,44 @@
                 </div>
             </section>
             <div class="btn">
-                <button class="btn-primary mono-bold">Add</button>
+                <button class="btn-primary mono-bold"  id="showPopup">Add</button>
             </div>
         </div>
     </section>
+    <div class="pop-up" id="pop-up-transaction">
+        <div class="popup-content">
+          <span class="close" id="close-transaction">&times;</span>
+          <h2>Create Transaction</h2>
+          <form id="addTransactionForm">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="amount">Amount</label>
+              <input type="number" id="amount" name="amount" required />
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <select name="type" id="type">
+                <option value="Choose Type">Choose Type</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="type">Currencies</label>
+              <select name="type" id="currencies"></select>
+            </div>
+            <div class="form-group">
+              <label for="date">Date:</label>
+              <input type="date" id="date" name="date" required />
+            </div>
+            <button type="submit">Create</button>
+          </form>
+        </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="./scripts/index.js"></script>
 </body>
 </html>
