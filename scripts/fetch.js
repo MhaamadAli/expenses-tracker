@@ -21,6 +21,8 @@ async function fetchCurrencies() {
 async function init() {
     try {
         await fetchCurrencies();
+        loadTransactions();
+        displayTotalBalance();
     } catch (error) {
         console.error('Error initializing application:', error);
     }

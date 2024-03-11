@@ -33,10 +33,11 @@
             </section>
             <section class="dashboard flex-row m-top1 center">
                 <h2 class="logo mono-bold f-big">Expense Tracker</h2>
-                <div class="search flex-row center">
+                <div class="balance mono-regular f-small btn-primary flex-row center p1" id="totalBalance"></div> 
+                <!-- <div class="search flex-row center">
                     <i class="fa-solid fa-magnifying-glass m1"></i>
                     <input type="text" placeholder="Search...">
-                </div>
+                </div> -->
             </section>
             <section class="transactions-list m-top2 flex-col center">
                 <div class="card mono-regular rounded p1">
@@ -90,6 +91,7 @@
 
       
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="./scripts/balance.js"></script>
       <script src="./scripts/fetch.js"></script>
       <script src="./scripts/index.js"></script>
       <script src="./scripts/localStorage.js"></script>

@@ -83,3 +83,8 @@ input {
     left: 20%;
 }
 
+.balance {
+    width: 30%;
+    align-items: center;
+}
+
