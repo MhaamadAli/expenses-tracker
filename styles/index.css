@@ -73,12 +73,9 @@ input {
 .card .icons {
     padding-right: 10px;
     gap: 20px;
-    color: #B05D48;
-}
-
-.card .icons i:nth-child(2) {
     color: white;
 }
+
 
 .btn {
     position: fixed;

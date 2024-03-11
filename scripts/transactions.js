@@ -12,28 +12,53 @@ function loadTransactions(currencies) {
         <div class="type m-left">Type: ${transaction.type}</div>
         <div class="amount m-left">Amount: ${transaction.amount} ${transaction.symbol}</div>
         <div class="icons flex-row">
-          <i class="fa-solid fa-pen-to-square" data-id="${transaction.id}"></i>
-          <i class="fa-solid fa-trash-can" data-id="${transaction.id}"></i>
+          <i class="fa-solid fa-pen-to-square update-icon" data-id="${transaction.id}"></i>
+          <i class="fa-solid fa-trash-can delete-icon" data-id="${transaction.id}"></i>
         </div>`;
         transactionsList.appendChild(card);
     });
+
+    // Add event listeners for update and delete icons
+    const updateIcons = document.querySelectorAll('.update-icon');
+    updateIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const transactionId = icon.getAttribute('data-id');
+            updateTransaction(transactionId);
+        });
+    });
+}
+
+
+function updateTransaction(transactionId) {
+    const index = transactions.findIndex(transaction => transaction.id === transactionId);
+    if (index !== -1) {
+        const transaction = transactions[index];
+        const newDescription = prompt('Enter new description:', transaction.name);
+        const newAmount = parseFloat(prompt('Enter new amount:', transaction.amount));
+        const newCurrency = prompt('Enter new currency:', transaction.symbol);
+        if (newDescription && !isNaN(newAmount) && newCurrency) {
+            transaction.name = newDescription;
+            transaction.amount = newAmount;
+            transaction.symbol = newCurrency;
+            transactions[index] = transaction;
+            saveTransactions(transactions);
+            loadTransactions();
+        } else {
+            alert('Please fill out all fields correctly.');
+        }
+    }
 }
 
 function createNewTransaction(transactionData) {
     
     transactionData.type = document.getElementById('type').value;
-
-    
-    const currencySelect = document.getElementById('currencies');
-    
+    const currencySelect = document.getElementById('currencies'); 
     transactionData.symbol = currencySelect.options[currencySelect.selectedIndex].getAttribute('data-symbol');
-
     transactionData.id = Date.now().toString();
     const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     transactions.push(transactionData);
     localStorage.setItem('transactions', JSON.stringify(transactions));
 }
-
 
 
 document.getElementById('addTransactionForm').addEventListener('submit', function(event) {
@@ -46,3 +71,7 @@ document.getElementById('addTransactionForm').addEventListener('submit', functio
     createNewTransaction(transactionData);
     document.getElementById('pop-up-transaction').classList.remove('show');
 });
+
+// Add event listener to the update icons
+
+document.addEventListener('DOMContentLoaded', init);
