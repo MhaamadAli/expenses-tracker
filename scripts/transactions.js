@@ -90,5 +90,3 @@ document.getElementById('addTransactionForm').addEventListener('submit', functio
     createNewTransaction(transactionData);
     document.getElementById('pop-up-transaction').classList.remove('show');
 });
-
-

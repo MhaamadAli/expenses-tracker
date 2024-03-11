@@ -1,6 +1,6 @@
 async function fetchCurrencies() {
     try {
-        const response = await axios.get('https://rich-erin-angler-hem.cyclic.app/students/available');
+        const response = await axios.get('https://dull-pink-sockeye-tie.cyclic.app/students/available');
         const currencies = response.data;
         const currenciesDropdown = document.getElementById('currencies');
         currenciesDropdown.innerHTML = '';
