@@ -1,6 +1,19 @@
 const transactions = getTransactions() || [];
 const transactionsList = document.querySelector('.transactions-list');
 
+function deleteTransaction(transactionId) {
+    // Find the index of the transaction with the given ID
+    const index = transactions.findIndex(transaction => transaction.id === transactionId);
+    // If the transaction is found
+    if (index !== -1) {
+        // Remove the transaction from the array
+        transactions.splice(index, 1);
+        // Update the local storage with the modified array
+        saveTransactions(transactions);
+        // Reload the list of transactions
+        loadTransactions();
+    }
+}
 
 function loadTransactions(currencies) {
     transactionsList.innerHTML = '';
@@ -18,12 +31,18 @@ function loadTransactions(currencies) {
         transactionsList.appendChild(card);
     });
 
-    // Add event listeners for update and delete icons
     const updateIcons = document.querySelectorAll('.update-icon');
     updateIcons.forEach(icon => {
         icon.addEventListener('click', () => {
             const transactionId = icon.getAttribute('data-id');
             updateTransaction(transactionId);
+        });
+    });
+    const deleteIcons = document.querySelectorAll('.delete-icon');
+    deleteIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const transactionId = icon.getAttribute('data-id');
+            deleteTransaction(transactionId);
         });
     });
 }
@@ -72,6 +91,4 @@ document.getElementById('addTransactionForm').addEventListener('submit', functio
     document.getElementById('pop-up-transaction').classList.remove('show');
 });
 
-// Add event listener to the update icons
 
-document.addEventListener('DOMContentLoaded', init);
